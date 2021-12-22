@@ -45,6 +45,20 @@ public class Clock {
 
     @Override
     public String toString() {
+        String hours = Integer.valueOf(this.hour).toString(),
+               minutes = Integer.valueOf(this.minute).toString();
+
+        if(this.hour<10)
+            hours = "0" + hours;
+        if(this.minute<10)
+            minutes = "0" +minutes;
+
+        return hours + ":" + minutes;
+
+
+
+
+        /*
         if(this.hour<10 && this.minute<10)
             return "0"+this.hour+":0"+this.minute;
         if(this.hour<10)
@@ -52,6 +66,8 @@ public class Clock {
         if(this.minute<10)
             return this.hour+":0"+this.minute;
         return this.hour+":"+this.minute;
+
+        */
     }
 
 }
