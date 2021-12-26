@@ -31,12 +31,32 @@ public class Folder extends StorageItem {
         folder.add(item);
         return true;
     }
-/*
-    public File findFile(String path) {
 
+    public  File findFile (String path) {
+        String[] splittedPath = path.split("/");
+        int branch=0;
+        for(String stringItem: splittedPath) {
+            for (int i=0; i<this.getSize(); i++) {
+                if (stringItem.equals(folder.get(i).name)){
+                    if(folder.get(i) instanceof File)
+                        return (File)folder.get(i);
+                    else if(folder.get(i) instanceof Folder){
+                        String innerPath ="";
+                        for(int i=1;i<splittedPath.length; i++){
+                            if(i== splittedPath.length-1)
+                                innerPath += splittedPath[i];
+                            innerPath += (splittedPath[i] + "/");
+                        }
+                        ((Folder) folder.get(i)).findFile(innerPath);
+
+
+                    }
+                }
+            }
+        }
 
     }
-*/
+
     public void sortList(SortingField field) {
         Comparator<StorageItem> comparatorField;
         switch (field) {
