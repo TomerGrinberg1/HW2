@@ -1,11 +1,9 @@
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 
 public abstract class StorageItem {
-    Date minDate, maxDate;
 
-    minDate = new Date(117, Calendar.JANUARY,1,0,0,0);
-    Date(122, Calendar.DECEMBER,31,23,59,59);
 
     String name;
     Date date;
@@ -13,24 +11,50 @@ public abstract class StorageItem {
 
     public StorageItem(String name) {
         this.name = name;
-        date = new Date(Main.rnd);
+        this.date = random();
     }
+
+    public Date getDate() {
+        return this.date;
+    }
+
+
     public abstract int getSize();
-    public void printTree(SortingField sortBy){
+
+    public void printTree(SortingField sortBy) {
+
+    }
+    public boolean isEqual(StorageItem item)
+    {
+        return (this.name.equals(item.name));
+
 
     }
 
 
+    public Timestamp random() {
+        final Date minDate, maxDate;
+        Timestamp rndDate;
+        long range;
+        minDate = new Date(117, Calendar.JANUARY, 1, 0, 0, 0);
+        maxDate = new Date(122, Calendar.DECEMBER, 31, 23, 59, 59);
+        range = maxDate.getTime() - minDate.getTime() + 1;
 
+        rndDate = new Timestamp(minDate.getTime() + Main.rnd.nextLong() % range);
+        return rndDate;
 
-
-
-
-
-
-
-
-
+    }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
