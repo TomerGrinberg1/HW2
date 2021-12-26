@@ -41,4 +41,10 @@ public class File extends StorageItem
         System.out.println(this.content);
 
     }
+
+    public void printTree(SortingField sortBy) {
+        System.out.println(this.getName());
+
+    }
+
 }

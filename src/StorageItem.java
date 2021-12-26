@@ -14,10 +14,14 @@ public abstract class StorageItem {
         this.date = random();
     }
 
-    public Date getDate() {
+    public Date getCreationDate() {
         return this.date;
     }
+    public String getName()
+    {
+        return this.name;
 
+    }
 
     public abstract int getSize();
 

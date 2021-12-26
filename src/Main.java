@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         testPartA();
         System.out.println();
-       // testPartB();
+        testPartB();
     }
 
     private static void testPartA() {
@@ -70,7 +70,7 @@ public class Main {
         System.out.println("o4 with ac3: " + o4.equals(ac3));
 
     }
-/*
+
     private static void testPartB() {
         System.out.println("---------- Tests for part B ----------");
         rnd = new Random(42);
@@ -122,7 +122,7 @@ public class Main {
         System.out.println("\n");
 
         String[] paths = {"aa.py", "B/code.java", "B/C/code.java", "AA.txt"};
-
+/*
         for (String path : paths) {
             File f = fo2.findFile(path);
             if (f == null) {
@@ -133,7 +133,7 @@ public class Main {
             }
             System.out.println("\n");
         }
-
+*/
         Folder f = new Folder("Testing");
         Folder temp1 = f;
         for (int i = 1; i <= 15; i++) {
@@ -151,6 +151,6 @@ public class Main {
 
         f.printTree(SortingField.NAME);
     }
-*/
+
 }
 
