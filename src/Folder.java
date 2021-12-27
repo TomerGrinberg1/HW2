@@ -79,31 +79,30 @@ public class Folder extends StorageItem {
 
         printTreeFolder(sortBy,1);
     }
-    public void printTreeFolder(SortingField sortBy, int counter) {
+   public void printTreeFolder(SortingField sortBy, int counter) {
 
 
         System.out.println(this.getName());
         if ( ! this.getName().contains(".") && ! this.getName().contains("[")){
             this.sortList(sortBy);
         }
-        for(int i=0; i< this.folder.size(); i++){
-            for(int j=0; j< counter; j++){
+        for(int i=0; i< this.folder.size(); i++) {
+            for (int j = 0; j < counter; j++) {
                 System.out.print("|    ");
             }
-            if(this.folder.get(i).getName().contains("[")){
+            if (this.folder.get(i) instanceof ShortCut) {
                 // Shortcut
                 this.folder.get(i).printTree(sortBy);
-            }
-
-            if(this.folder.get(i).getName().contains(".")){
-                // File
-                this.folder.get(i).printTree(sortBy);
-            }
-            else{
-                // Folder
-                ((Folder)this.folder.get(i)).printTreeFolder(sortBy, counter+1);
+            } else {
+                if (this.folder.get(i) instanceof File)
+                    {
+                        // File
+                        this.folder.get(i).printTree(sortBy);
+                    }
+            else
+                    // Folder
+                    ((Folder) this.folder.get(i)).printTreeFolder(sortBy, counter + 1);
+                }
             }
         }
-
     }
-}
