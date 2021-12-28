@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-
 public class Folder extends StorageItem {
     ArrayList<StorageItem> folder;
 
@@ -16,7 +15,7 @@ public class Folder extends StorageItem {
     public int getSize() {
         int sum = 0;
         for (StorageItem item : folder) {
-            sum = sum + item.getSize();
+            sum += item.getSize();
         }
         return sum;
     }
@@ -32,69 +31,59 @@ public class Folder extends StorageItem {
         folder.add(item);
         return true;
     }
-    public String getNameIgnoreCase()
-    {
-        return this.name.toUpperCase().toLowerCase();
+/*
+    public File findFile(String path) {
+
+
     }
-
-    /*
-        public File findFile(String path) {
-
-
-        }
-    */
+*/
     public void sortList(SortingField field) {
-
         Comparator<StorageItem> comparatorField;
         switch (field) {
             case NAME:
-                comparatorField = Comparator.comparing(StorageItem::getNameIgnoreCase);
+                comparatorField = Comparator.comparing(StorageItem::getName);
                 break;
 
             case SIZE:
-                comparatorField = Comparator.comparing(StorageItem::getSize).thenComparing(StorageItem::getNameIgnoreCase);
+                comparatorField = Comparator.comparing(StorageItem::getSize).thenComparing(StorageItem::getName);
                 break;
 
             default:
 
-                comparatorField = Comparator.comparing(StorageItem::getCreationDate).thenComparing(StorageItem::getNameIgnoreCase);
+                comparatorField = Comparator.comparing(StorageItem::getCreationDate).thenComparing(StorageItem::getName);
         }
         Collections.sort(this.folder, comparatorField);
     }
 
     public void printTree(SortingField sortBy) {
 
-        printTreeFolder(sortBy, 1);
+        printTreeFolder(sortBy,1);
     }
-
     public void printTreeFolder(SortingField sortBy, int counter) {
 
 
-
-        if (!this.getName().contains(".") || !this.getName().contains("[")) {
-            System.out.println(this.getName());
+        System.out.println(this.getName());
+        if ( ! this.getName().contains(".") && ! this.getName().contains("[")){
             this.sortList(sortBy);
         }
-        for (int i = 0; i < this.folder.size(); i++) {
-            for (int j = 0; j < counter; j++) {
+        for(int i=0; i< this.folder.size(); i++){
+            for(int j=0; j< counter; j++){
                 System.out.print("|    ");
             }
-            if (this.folder.get(i) instanceof ShortCut) {
+            if(this.folder.get(i).getName().contains("[")){
                 // Shortcut
                 this.folder.get(i).printTree(sortBy);
-                continue;
             }
 
-            if (this.folder.get(i) instanceof File) {
+            if(this.folder.get(i).getName().contains(".")){
                 // File
                 this.folder.get(i).printTree(sortBy);
-                continue;
             }
-
-            // Folder
-            ((Folder) this.folder.get(i)).printTreeFolder(sortBy, counter + 1);
-
-
+            else{
+                // Folder
+                ((Folder)this.folder.get(i)).printTreeFolder(sortBy, counter+1);
+            }
         }
+
     }
 }

@@ -40,7 +40,7 @@ public abstract class StorageItem {
     }
 
 
-    public Timestamp random() {
+  public Timestamp random() {
         final Date minDate, maxDate;
         Timestamp rndDate;
         long range;
