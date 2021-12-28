@@ -29,7 +29,7 @@ class AccurateClock extends Clock {
     }
     @Override
     public int hashCode() {
-        return 3600* super.hour + super.minute +this.seconds;
+        return -(60* super.hour + super.minute +this.seconds);
     }
 
     @Override

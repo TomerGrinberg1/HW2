@@ -40,7 +40,7 @@ public class Clock {
     }
     @Override
     public int hashCode() {
-        return 60 * hour + minute;
+        return 60 * hour + minute-1;
     }
 
     @Override

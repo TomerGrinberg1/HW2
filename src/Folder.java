@@ -36,18 +36,19 @@ public class Folder extends StorageItem {
         String[] splittedPath = path.split("/");
         //int branch = 0;
         for (String stringItem : splittedPath) {
-            for (int i = 0; i < this.getSize(); i++) {
-                if (stringItem.equals(folder.get(i).name)) {
-                    if (folder.get(i) instanceof File)
+            for (int i = 0; i < this.folder.size(); i++) {
+                if (stringItem.equals(this.folder.get(i).getName())) {
+                    if (this.folder.get(i) instanceof File)
                         return (File) folder.get(i);
-                    else if (folder.get(i) instanceof Folder) {
+                    else if (this.folder.get(i) instanceof Folder) {
                         String innerPath = "";
                         for (int j = 1; j < splittedPath.length; j++) {
-                            if (i == splittedPath.length - 1)
+                            if (j == splittedPath.length - 1)
                                 innerPath += splittedPath[j];
-                            innerPath += (splittedPath[j] + "/");
+                            else
+                            innerPath += splittedPath[j] + "/";
                         }
-                        ((Folder) folder.get(i)).findFile(innerPath);
+                         return ((Folder) folder.get(i)).findFile(innerPath);
 
 
                     }
