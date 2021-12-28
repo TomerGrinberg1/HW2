@@ -31,26 +31,46 @@ public class Folder extends StorageItem {
         folder.add(item);
         return true;
     }
-/*
-    public File findFile(String path) {
+
+    public  File findFile (String path) {
+        String[] splittedPath = path.split("/");
+        //int branch = 0;
+        for (String stringItem : splittedPath) {
+            for (int i = 0; i < this.getSize(); i++) {
+                if (stringItem.equals(folder.get(i).name)) {
+                    if (folder.get(i) instanceof File)
+                        return (File) folder.get(i);
+                    else if (folder.get(i) instanceof Folder) {
+                        String innerPath = "";
+                        for (int j = 1; j < splittedPath.length; j++) {
+                            if (i == splittedPath.length - 1)
+                                innerPath += splittedPath[j];
+                            innerPath += (splittedPath[j] + "/");
+                        }
+                        ((Folder) folder.get(i)).findFile(innerPath);
 
 
+                    }
+                }
+            }
+        }
+        return null;
     }
-*/
+
     public void sortList(SortingField field) {
         Comparator<StorageItem> comparatorField;
         switch (field) {
             case NAME:
-                comparatorField = Comparator.comparing(StorageItem::getName);
+                comparatorField = Comparator.comparing(StorageItem::getNameIgnoreCase);
                 break;
 
             case SIZE:
-                comparatorField = Comparator.comparing(StorageItem::getSize).thenComparing(StorageItem::getName);
+                comparatorField = Comparator.comparing(StorageItem::getSize).thenComparing(StorageItem::getNameIgnoreCase);
                 break;
 
             default:
 
-                comparatorField = Comparator.comparing(StorageItem::getCreationDate).thenComparing(StorageItem::getName);
+                comparatorField = Comparator.comparing(StorageItem::getCreationDate).thenComparing(StorageItem::getNameIgnoreCase);
         }
         Collections.sort(this.folder, comparatorField);
     }
@@ -70,20 +90,22 @@ public class Folder extends StorageItem {
             for(int j=0; j< counter; j++){
                 System.out.print("|    ");
             }
-            if(this.folder.get(i).getName().contains("[")){
+            if(this.folder.get(i) instanceof ShortCut){
                 // Shortcut
                 this.folder.get(i).printTree(sortBy);
+                continue;
             }
 
-            if(this.folder.get(i).getName().contains(".")){
+            if(this.folder.get(i) instanceof File){
                 // File
                 this.folder.get(i).printTree(sortBy);
+                continue;
+
             }
-            else{
+
                 // Folder
                 ((Folder)this.folder.get(i)).printTreeFolder(sortBy, counter+1);
             }
         }
 
     }
-}

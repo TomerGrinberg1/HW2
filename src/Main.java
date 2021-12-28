@@ -123,7 +123,7 @@ public class Main {
         System.out.println("\n");
 
         String[] paths = {"aa.py", "B/code.java", "B/C/code.java", "AA.txt"};
-/*
+
         for (String path : paths) {
             File f = fo2.findFile(path);
             if (f == null) {
@@ -134,7 +134,7 @@ public class Main {
             }
             System.out.println("\n");
         }
-*/
+
         Folder f = new Folder("Testing");
         Folder temp1 = f;
         for (int i = 1; i <= 15; i++) {
