@@ -5,7 +5,7 @@ public class File extends StorageItem
  public File (String name, String ending)
  {
      super(name);
-     this.content=null;
+     this.content="";
      this.ending=ending;
 
  }
@@ -14,6 +14,10 @@ public class File extends StorageItem
      return this.name+"."+this.ending;
 
  }
+    public String getNameIgnoreCase()
+    {
+        return this.name.toUpperCase().toLowerCase()+"."+this.ending.toLowerCase();
+    }
 
  public String getEnding(){
      return this.ending;
@@ -31,9 +35,8 @@ public class File extends StorageItem
 
     @Override
     public int getSize() {
-       if(content==null)
-           return 0;
-        return this.content.length();
+
+        return (this.content.length());
     }
      public  void printContent()
     {

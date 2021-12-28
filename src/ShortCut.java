@@ -12,8 +12,16 @@ public class ShortCut extends StorageItem{
         return 1;
     }
     public String getName() {
-        return this.name+"[shortcut]";
+        //if(this.shortCut instanceof File || this.shortCut instanceof Folder)
+        return this.shortCut.getName()+" [shortcut]";
+        //else
+        //return this.name+" [shortcut]";
     }
+    public String getNameIgnoreCase()
+    {
+        return this.name.toUpperCase().toLowerCase();
+    }
+
     public StorageItem getItem(){
     return shortCut;
 

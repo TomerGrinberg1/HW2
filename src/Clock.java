@@ -32,7 +32,7 @@ public class Clock {
     }
     @Override
     public boolean equals(Object other) {
-        if (!(other instanceof Clock) || (other instanceof AccurateClock)) {
+        if (!(other instanceof Clock) || this.hashCode()!=other.hashCode()) {
             return false;
         }
         Clock otherClock = (Clock) other;
