@@ -5,12 +5,19 @@ import java.util.Comparator;
 public class Folder extends StorageItem {
     ArrayList<StorageItem> folder;
 
-
+    /**
+     * initializes the name of the folder and the list of storage item
+     * @param name: the name of the folder
+     */
     public Folder(String name) {
         super(name);
         this.folder = new ArrayList<>();
     }
 
+     /**
+     * get the size of all the storage item in the folder
+     * @return : the size of the folder
+     */
     @Override
     public int getSize() {
         int sum = 0;
@@ -19,7 +26,11 @@ public class Folder extends StorageItem {
         }
         return sum;
     }
-
+/**
+     * add the item to the storageItem if there is no another item with the same name in the list
+     * @param item: object from StorageItem type
+     * @return : if there is storageItem with equal name return false, otherwise true
+     */
     public boolean addItem(StorageItem item) {
         for (StorageItem folderItem : folder) {
             if (folderItem.isEqual(item)) {
@@ -31,7 +42,11 @@ public class Folder extends StorageItem {
         folder.add(item);
         return true;
     }
-
+ /**
+     * add the item to the storageItem  if there is no another item with the same name in the list
+     * @param path: the path of the file
+     * @return : the file that his path transferred
+     */
     public  File findFile (String path) {
         String[] splittedPath = path.split("/");
         int branch=0;
@@ -57,6 +72,10 @@ public class Folder extends StorageItem {
 
     }
 
+    /**
+     * sort the list according to the given method
+     * @param field: the method according to print the tree
+     */
     public void sortList(SortingField field) {
         Comparator<StorageItem> comparatorField;
         switch (field) {
@@ -74,7 +93,11 @@ public class Folder extends StorageItem {
         }
         Collections.sort(this.folder, comparatorField);
     }
-
+/**
+     * print tree of all the Folders as requested
+     * @param field: the method according to print the tree
+     * @param counterTabs: number of tubs we need to add to the print
+     */
     public void printTree(SortingField sortBy) {
 
         printTreeFolder(sortBy,1);
