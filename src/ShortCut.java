@@ -1,35 +1,50 @@
-public class ShortCut extends StorageItem{
+public class ShortCut extends StorageItem {
     StorageItem shortCut;
-    //String name;
-    public ShortCut(StorageItem item)
-    {
+
+    /**
+     * class constructor
+     * @param item : file\folder
+     */
+    public ShortCut(StorageItem item) {
         super(item.name);
         shortCut=item;
     }
 
+    /**
+     * @return each shortcut contains only one item
+     */
     @Override
     public int getSize() {
         return 1;
     }
+
+    /**
+     * @return a string composed with the item's name and "shortcut"
+     */
     public String getName() {
-        //if(this.shortCut instanceof File || this.shortCut instanceof Folder)
         return this.shortCut.getName()+" [shortcut]";
-        //else
-        //return this.name+" [shortcut]";
-    }
-    public String getNameIgnoreCase()
-    {
-        return this.name.toUpperCase().toLowerCase();
     }
 
+    /**
+     * @return shortcut's name, lower case letters
+     */
+    public String getNameIgnoreCase() {
+        return super.getNameIgnoreCase();
+    }
+
+    /**
+     * @return : required shortcut
+     */
     public StorageItem getItem(){
-    return shortCut;
-
+        return shortCut;
     }
+
+    /**
+     * @param sortBy: storageItem's enum
+     */
     public void printTree(SortingField sortBy) {
         System.out.println(getName());
     }
-
-    }
+}
 
 
