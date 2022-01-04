@@ -81,6 +81,7 @@ public class Main {
         Folder fo2 = new Folder("A");
         fo2.addItem(fo1);
         File fi2 = new File("Aa", "txt");
+
         fi2.addContent("Hello\nWorld!");
         fo2.addItem(fi2);
         File fi3 = new File("aa", "py");
@@ -122,7 +123,7 @@ public class Main {
         System.out.println("\n");
 
         String[] paths = {"aa.py", "B/code.java", "B/C/code.java", "AA.txt"};
-/*
+
         for (String path : paths) {
             File f = fo2.findFile(path);
             if (f == null) {
@@ -133,7 +134,7 @@ public class Main {
             }
             System.out.println("\n");
         }
-*/
+
         Folder f = new Folder("Testing");
         Folder temp1 = f;
         for (int i = 1; i <= 15; i++) {
@@ -151,6 +152,4 @@ public class Main {
 
         f.printTree(SortingField.NAME);
     }
-
 }
-
